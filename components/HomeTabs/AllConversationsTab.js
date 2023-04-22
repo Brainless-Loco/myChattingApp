@@ -2,12 +2,12 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 import ASingleChat from '../ASingleChat'
 
-export default function AllConversationsTab() {
+export default function AllConversationsTab({navigation}) {
   return (
     <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false} style={styles.container}>
-        <ASingleChat/>
-        <ASingleChat/>
-        <ASingleChat/>
+        <ASingleChat navigation={navigation}/>
+        <ASingleChat navigation={navigation}/>
+        <ASingleChat navigation={navigation}/>
     </ScrollView>
   )
 }

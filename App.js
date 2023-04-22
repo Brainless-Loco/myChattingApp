@@ -5,6 +5,7 @@ import store from './redux/Store';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './screens/Home';
+import Chat from './screens/Chat';
 
 
 const Stack = createNativeStackNavigator();
@@ -15,7 +16,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <NavigationContainer>
+      <NavigationContainer  >
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} options={{headerTitle:'My Chat',headerTitleAlign:'center',
         headerStyle:{
@@ -26,6 +27,10 @@ export default function App() {
           color:'white',
           fontWeight:'bold'
         }}} />
+        <Stack.Screen name= 'chat' component={Chat} options={{headerTitle:'Conversation',headerTitleStyle:{
+          color:'#0274ed'
+        }}} />
+        {/* options={{ headerShown: false }} */}
       </Stack.Navigator>
       </NavigationContainer>
     </Provider>

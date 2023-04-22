@@ -2,9 +2,9 @@ import { View, Text, Pressable, StyleSheet, Image } from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
 
-export default function ASingleChat() {
+export default function ASingleChat({navigation}) {
   return (
-    <Pressable  onPress={()=>{console.log('hahaha')}} style={styles.container}>
+    <Pressable  onPress={()=>{navigation.navigate('chat')}} style={styles.container}>
         <Image style={styles.imageStyle} source={require('../assets/images/avatar.png')}/>
         <View style={styles.midContainerStyle}> 
             <Text style={styles.chatNameStyle}>Dhinka Chika Dhin</Text>

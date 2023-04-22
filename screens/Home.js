@@ -27,13 +27,11 @@ export default function Home() {
 
 
     return (
-        <Tab.Navigator initialRouteName='chats' screenOptions={{headerShown:false,tabBarLabelStyle:{
-            display:'none'
-        }}} >
+        <Tab.Navigator initialRouteName='chats' screenOptions={{headerShown:false,tabBarLabelStyle:{display:'none'}}} >
             <Tab.Screen name="search" component={SearchTab} options={{tabBarIcon:()=>{return <FontAwesome5 name="search" size={24} color="gray" />}}}/>
             <Tab.Screen name="chats" component={AllConversationsTab}  options={{tabBarIcon:()=>{return <Entypo name="chat" size={24} color="gray" />}}}/>
             <Tab.Screen name='profile' component={Profile}  options={{tabBarIcon:()=>{return <Ionicons name="person-sharp" size={24} color="gray" />}}}/>
-    </Tab.Navigator>
+        </Tab.Navigator>
     )
 }
 
