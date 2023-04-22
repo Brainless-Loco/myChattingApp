@@ -2,6 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider} from 'react-redux';
 import store from './redux/Store';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from './screens/Home';
+
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
 
@@ -9,11 +15,21 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <Text>This is the start of My Chatting App</Text>
-        <StatusBar style="auto" />
-      </View>
+      <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} options={{headerTitle:'My Chat',headerTitleAlign:'center',
+        headerStyle:{
+          backgroundColor:'#0274ed',
+        }
+        ,
+        headerTitleStyle:{
+          color:'white',
+          fontWeight:'bold'
+        }}} />
+      </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
+    
   );
 }
 
