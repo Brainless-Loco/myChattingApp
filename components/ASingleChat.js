@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default function ASingleChat() {
   return (
-    <Pressable style={styles.container}>
+    <Pressable  onPress={()=>{console.log('hahaha')}} style={styles.container}>
         <Image style={styles.imageStyle} source={require('../assets/images/avatar.png')}/>
         <View style={styles.midContainerStyle}> 
             <Text style={styles.chatNameStyle}>Dhinka Chika Dhin</Text>
