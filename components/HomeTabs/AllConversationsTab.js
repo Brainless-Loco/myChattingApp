@@ -15,6 +15,7 @@ export default function AllConversationsTab({navigation}) {
 const styles = StyleSheet.create({
     container: {
       backgroundColor: '#fff',
+      paddingTop:4
     }
 
   });

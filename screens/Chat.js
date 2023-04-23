@@ -10,8 +10,7 @@ export default function Chat({navigation}) {
     <View style={styles.container}>
         <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false} 
         ref={scrollViewRef}
-        onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
-        >
+        onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}>
             <AMessageContainer message={"hahaha"} ownText={true}/>
             
             <AMessageContainer message={"hahaha"} ownText={false}/>
@@ -61,7 +60,7 @@ export default function Chat({navigation}) {
             <AMessageContainer message={"hahaha"} ownText={false}/>
 
         </ScrollView>
-        <View>
+        <View style={{paddingTop:5}}>
             <TextInput style={styles.messageInput}  multiline={true} placeholder='Write your text'/>
             <Pressable style={styles.sendBtnStyle} onPress={()=>console.log('Send btn pressed')}>
                 <FontAwesome name="send" size={24} color="#0274ed" />

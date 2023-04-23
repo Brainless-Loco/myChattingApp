@@ -23,7 +23,9 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         borderRadius:5,
         gap:12,
-        margin:2,
+        margin:5,
+        marginBottom:2,
+        marginTop:2,
         padding:7
     },
     imageStyle:{
@@ -40,6 +42,7 @@ const styles = StyleSheet.create({
     chatNameStyle:{
         fontSize:17,
         fontWeight:'bold',
+        color:'#0274ed'
     }
 
   });

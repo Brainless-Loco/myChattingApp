@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './screens/Home';
 import Chat from './screens/Chat';
+import Auth from './screens/Auth';
 
 
 const Stack = createNativeStackNavigator();
@@ -18,7 +19,16 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer  >
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} options={{headerTitle:'My Chat',headerTitleAlign:'center',
+        <Stack.Screen name="auth" component={Auth} options={{headerTitle:'My Chat',headerTitleAlign:'center',
+        headerStyle:{
+          backgroundColor:'#0274ed',
+        }
+        ,
+        headerTitleStyle:{
+          color:'white',
+          fontWeight:'bold'
+        }}}/>
+        <Stack.Screen name="home" component={Home} options={{headerTitle:'My Chat',headerTitleAlign:'center',
         headerStyle:{
           backgroundColor:'#0274ed',
         }
