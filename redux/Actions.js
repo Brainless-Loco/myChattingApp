@@ -6,10 +6,3 @@ export const updateCurrentUserUsername = (username) =>{
       username: username
     }
 }
-
-export const updateActiveTabName = (name)=>{
-    return{
-        type:UPDATE_ACTIVE_TAB_NAME,
-        name:name
-    }
-}

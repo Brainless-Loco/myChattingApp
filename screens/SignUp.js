@@ -1,23 +1,25 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
-import { onAuthStateChanged, signOut, createUserWithEmailAndPassword ,getAuth, sendSignInLinkToEmail } from 'firebase/auth';
+import {createUserWithEmailAndPassword  } from 'firebase/auth';
+import { auth } from '../firebase/firebaseConfig';
 
-export default function Auth({navigation}) {
-
-    const auth = getAuth();
+export default function SignUp({navigation}) {
 
     const [userName, setUserName]= useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setconfirmPassword] = useState('')
-    const [newUser,setNewUser]= useState(false)
     const [errorMessage, seterrorMessage] = useState('')
 
     const registerWithEmail = async () => {
         try {
             const {user} = await createUserWithEmailAndPassword(auth,email, password)
             seterrorMessage('')  
+            setEmail('')
+            setPassword('')
+            setconfirmPassword('')
+            setUserName('')
             alert("Account Created! You can now Log In.");
         }
         catch(e){
@@ -38,16 +40,11 @@ export default function Auth({navigation}) {
         }
     }
 
-    const updateNewOrOldUser = ()=>{
-        setNewUser(!newUser)
-    }
-
-
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <Ionicons name="chatbubbles-sharp" size={150} style={styles.logo} />
             <Text style={[styles.logo,styles.title]}>My Chat</Text>
-            {newUser&&<TextInput
+            <TextInput
                     style={styles.input}
                     placeholderTextColor="#aaaaaa"
                     placeholder='User Name'
@@ -55,7 +52,7 @@ export default function Auth({navigation}) {
                     value={userName}
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
-                />}
+                />
             <TextInput
                     style={styles.input}
                     placeholder='E-mail'
@@ -75,7 +72,7 @@ export default function Auth({navigation}) {
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
-                {newUser&&<TextInput
+                <TextInput
                     style={styles.input}
                     placeholderTextColor="#aaaaaa"
                     secureTextEntry
@@ -84,17 +81,18 @@ export default function Auth({navigation}) {
                     value={confirmPassword}
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
-                />}
+                />
                 {errorMessage.length>0 && <Text style={{color:'red',textAlign:'center'}}>*{errorMessage}*</Text>}
                 <TouchableOpacity
+                    disabled={password.length==0 || email.length==0}
                     style={styles.button}
-                    onPress={() => newUser? onSingUpPress():onLoginPress()}>
-                    <Text style={styles.buttonTitle}>{newUser?"Sign Up":"Log in"}</Text>
+                    onPress={() => onSingUpPress()}>
+                    <Text style={styles.buttonTitle}>Sign Up</Text>
                 </TouchableOpacity>
                 <View style={styles.footerView}>
-                    <Text style={styles.footerText}>{ newUser? "Already":"Don't"} have an account? <Text onPress={updateNewOrOldUser} style={styles.footerLink}>{newUser? "Log In":"Sign up"}</Text></Text>
+                    <Text style={styles.footerText}>Already have an account? <Text onPress={()=>{navigation.navigate('login')}} style={styles.footerLink}>Log In</Text></Text>
                 </View>
-        </View>
+        </ScrollView>
     )
 }
 
