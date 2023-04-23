@@ -1,15 +1,15 @@
-import { View, Text, Pressable, StyleSheet, Image } from 'react-native'
+import { View, Text, Pressable, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
 
 export default function ASingleSearchItem() {
   return (
-    <Pressable style={styles.container}>
+    <TouchableOpacity style={styles.container}>
         <Image style={styles.imageStyle} source={require('../assets/images/avatar.png')}/>
         <View style={styles.midContainerStyle}> 
             <Text style={styles.chatNameStyle}>Dhinka Chika Dhin</Text>
         </View>
-    </Pressable>
+    </TouchableOpacity>
   )
 }
 

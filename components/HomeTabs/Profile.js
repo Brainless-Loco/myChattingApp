@@ -1,7 +1,21 @@
-import { View, Text, Image, Pressable, StyleSheet, ScrollView, TextInput } from 'react-native'
+import { View, Text, Image, Pressable, StyleSheet, ScrollView, TextInput, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { auth } from '../../firebase/firebaseConfig'
+import { signOut } from 'firebase/auth'
+import { getStorage, ref } from "firebase/storage";
 
-export default function Profile() {
+export default function Profile({navigation}) {
+
+  const signOutBtn = ()=>{
+    signOut(auth)
+    navigation.navigate('login')
+  }
+
+  
+const storage = getStorage();
+
+const mountainsRef = ref(storage, '../../assets/images/avater.png');
+
   return (
     <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false} style={{backgroundColor:'white'}}>
 
@@ -22,9 +36,12 @@ export default function Profile() {
       <TextInput style={styles.textInputStyle} placeholder='Confirm Password'/>
     </View>
 
-      <Pressable style={styles.updateProfileBtn}>
+      <TouchableOpacity style={styles.updateProfileBtn}>
         <Text style={{color:'white',fontSize:20,fontWeight:'600'}}>Update Profile</Text>
-      </Pressable>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.signOutBtn} onPress={signOutBtn}>
+        <Text style={{color:'white',fontSize:20,fontWeight:'600'}}>Sign Out</Text>
+      </TouchableOpacity>
       
     </ScrollView>
   )
@@ -78,6 +95,17 @@ const styles = StyleSheet.create({
     display:'flex',
     justifyContent:'center',
     alignItems:'center',
-    marginTop:20
+    marginTop:12
+  },
+  signOutBtn:{
+    display:'flex',
+    justifyContent:'center',
+    alignSelf:'center',
+    alignItems:'center',
+    backgroundColor:'#a32121',
+    width:'60%',
+    height:50,
+    borderRadius:25,
+    textAlign:'center',
   }
 })

@@ -24,8 +24,7 @@ export default function App() {
           headerBackVisible:false,
           headerStyle:{
             backgroundColor:'#0274ed',
-          }
-          ,
+          },
           headerTitleStyle:{
             color:'white',
             fontWeight:'bold'
@@ -33,8 +32,7 @@ export default function App() {
         <Stack.Screen name="signup" component={SignUp} options={{headerTitle:'My Chat',headerTitleAlign:'center',headerBackVisible:false,
         headerStyle:{
           backgroundColor:'#0274ed',
-        }
-        ,
+        },
         headerTitleStyle:{
           color:'white',
           fontWeight:'bold'
@@ -49,7 +47,8 @@ export default function App() {
           color:'white',
           fontWeight:'bold'
         }}} />
-        <Stack.Screen name= 'chat' component={Chat} options={{headerTitle:'Conversation',headerBackVisible:false,headerTitleStyle:{
+        <Stack.Screen name= 'chat' component={Chat} options={{headerTitle:'Conversation',
+        headerTitleAlign:'center',headerTitleStyle:{
           color:'#0274ed'
         }}} />
         {/* options={{ headerShown: false }} */}

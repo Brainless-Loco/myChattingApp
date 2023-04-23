@@ -13,7 +13,7 @@ export default function LogIn({navigation}) {
     const loginUser = async () => {
         try {
           await signInWithEmailAndPassword(auth, email, password);
-          alert("Success")
+          navigation.navigate('home')
         } catch (e) {
           if(e.code==='auth/wrong-password') seterrorMessage("Wrong Password")
           if(e.code==='auth/user-not-found') seterrorMessage('No account matches this email')
@@ -21,8 +21,9 @@ export default function LogIn({navigation}) {
       };
 
     const onLoginPress = () => {
-        loginUser()
-        // console.log("Log in")
+        // loginUser()
+        
+        navigation.navigate('home')
     }
 
     return (
@@ -56,7 +57,10 @@ export default function LogIn({navigation}) {
                     <Text style={styles.buttonTitle}>{"Log in"}</Text>
                 </TouchableOpacity>
                 <View style={styles.footerView}>
-                    <Text style={styles.footerText}>Don't have an account? <Text onPress={()=>{navigation.navigate('signup')}} style={styles.footerLink}>Sign up</Text></Text>
+                    <Text style={styles.footerText}>Don't have an account? <Text onPress={()=>{
+                        setEmail('');
+                        setPassword('');
+                        navigation.navigate('signup')}} style={styles.footerLink}>Sign up</Text></Text>
                 </View>
         </ScrollView>
     )

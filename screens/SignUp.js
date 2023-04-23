@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
 import {createUserWithEmailAndPassword  } from 'firebase/auth';
-import { auth } from '../firebase/firebaseConfig';
+import { auth, db } from '../firebase/firebaseConfig';
+import { Timestamp, addDoc, collection, doc, refEqual, setDoc, updateDoc } from 'firebase/firestore/lite';
+import { child, getDatabase, ref, set } from "firebase/database";
 
 export default function SignUp({navigation}) {
 
@@ -12,14 +14,33 @@ export default function SignUp({navigation}) {
     const [confirmPassword, setconfirmPassword] = useState('')
     const [errorMessage, seterrorMessage] = useState('')
 
+    const setAllNone = ()=>{
+        seterrorMessage('')  
+        setEmail('')
+        setPassword('')
+        setconfirmPassword('')
+        setUserName('')
+    }
+
+    const doFireBaseUpdate = async ()=>{
+        const usersRef = collection(db,'users')
+        const docRef = await addDoc(usersRef,{
+            "userName":userName,
+            "email":email,
+            "dp_url":"",
+            "chatRooms":[],
+            "joiningDate": Timestamp.fromDate(new Date()),
+            "user_id":''
+        });
+        updateDoc(doc(db,"users",docRef.id),{"user_id":docRef.id})
+    }
+    
+
     const registerWithEmail = async () => {
         try {
             const {user} = await createUserWithEmailAndPassword(auth,email, password)
-            seterrorMessage('')  
-            setEmail('')
-            setPassword('')
-            setconfirmPassword('')
-            setUserName('')
+            setAllNone()
+            doFireBaseUpdate()
             alert("Account Created! You can now Log In.");
         }
         catch(e){
@@ -33,7 +54,7 @@ export default function SignUp({navigation}) {
         console.log("Log in")
     }
 
-    const onSingUpPress = ()=>{
+    const onSingUpPress = async ()=>{
         if(email.length>0 && password.length>0) {
             if(password===confirmPassword) registerWithEmail()
             else seterrorMessage("Passwords do not match")
@@ -90,7 +111,13 @@ export default function SignUp({navigation}) {
                     <Text style={styles.buttonTitle}>Sign Up</Text>
                 </TouchableOpacity>
                 <View style={styles.footerView}>
-                    <Text style={styles.footerText}>Already have an account? <Text onPress={()=>{navigation.navigate('login')}} style={styles.footerLink}>Log In</Text></Text>
+                    <Text style={styles.footerText}>Already have an account? <Text onPress={()=>{
+                        setEmail('');
+                        setPassword('');
+                        setUserName('');
+                        setconfirmPassword('');
+                        navigation.navigate('login')
+                        }} style={styles.footerLink}>Log In</Text></Text>
                 </View>
         </ScrollView>
     )

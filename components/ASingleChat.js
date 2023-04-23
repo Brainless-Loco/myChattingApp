@@ -1,17 +1,17 @@
-import { View, Text, Pressable, StyleSheet, Image } from 'react-native'
+import { View, Text, Pressable, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
 
 export default function ASingleChat({navigation}) {
   return (
-    <Pressable  onPress={()=>{navigation.navigate('chat')}} style={styles.container}>
+    <TouchableOpacity  onPress={()=>{navigation.navigate('chat')}} style={styles.container}>
         <Image style={styles.imageStyle} source={require('../assets/images/avatar.png')}/>
         <View style={styles.midContainerStyle}> 
             <Text style={styles.chatNameStyle}>Dhinka Chika Dhin</Text>
             <Text>Total: 32 texts</Text>
         </View>
         <Pressable style={styles.deleteBtnContainerStyle}><Ionicons name="trash" size={24} color="#9c0615"/></Pressable>
-    </Pressable>
+    </TouchableOpacity>
   )
 }
 
