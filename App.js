@@ -20,7 +20,7 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer  >
       <Stack.Navigator>
-        <Stack.Screen name="login" component={LogIn} options={{headerTitle:'My Chat',headerTitleAlign:'center',
+        {/* <Stack.Screen name="login" component={LogIn} options={{headerTitle:'My Chat',headerTitleAlign:'center',
           headerBackVisible:false,
           headerStyle:{
             backgroundColor:'#0274ed',
@@ -36,7 +36,7 @@ export default function App() {
         headerTitleStyle:{
           color:'white',
           fontWeight:'bold'
-        }}}/>
+        }}}/> */}
         <Stack.Screen name="home" component={Home} options={{headerTitle:'My Chat',headerTitleAlign:'center',
         headerBackVisible:false,
         headerStyle:{

@@ -2,6 +2,8 @@ import { UPDATE_ACTIVE_TAB_NAME, UPDATE_CURRENT_USER_USERNAME } from "./Types"
 
 const initialState = {
     currentUserUsername:'',
+    currentUserId:'',
+    currentOpenedChat:'',
     currentUserEmail:'',
     loggedIn: false,
     currentOpenedChatID:'',

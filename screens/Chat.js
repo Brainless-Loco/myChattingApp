@@ -2,72 +2,77 @@ import { View, Text, StyleSheet, TextInput, ScrollView, Pressable, Image } from 
 import React, { useRef } from 'react'
 import { FontAwesome } from '@expo/vector-icons';
 import AMessageContainer from '../components/ChatComponents/AMessageContainer';
+import { addDoc } from 'firebase/firestore/lite';
+import { db } from '../firebase/firebaseConfig';
 
-export default function Chat({navigation}) {
+export default function Chat() {
     const scrollViewRef = useRef();
+    
+    // const firstRef = collection(db,'kutta')
+    // addDoc(firstRef,{'name':'nameValue','Query':'editorValue'});=
 
-  return (
-    <View style={styles.container}>
-        <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false} 
-        ref={scrollViewRef}
-        onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}>
-            <AMessageContainer message={"hahaha"} ownText={true}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={false}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={true}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={true}/>
-            
-            <AMessageContainer message={"hahahaadfjjdajfbadjkbvjkd daj fadjhf jadlfh adjhf adjfh kadj jkb cxzjkb cjkzxbkbckjXBc jkxz "} ownText={false}/>
+    return (
+        <View style={styles.container}>
+            <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false} 
+            ref={scrollViewRef}
+            onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}>
+                <AMessageContainer message={"hahaha"} ownText={true}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={false}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={true}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={true}/>
+                
+                <AMessageContainer message={"hahahaadfjjdajfbadjkbvjkd daj fadjhf jadlfh adjhf adjfh kadj jkb cxzjkb cjkzxbkbckjXBc jkxz "} ownText={false}/>
 
-            
-            <AMessageContainer message={"hahaha"} ownText={true}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={false}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={true}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={true}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={false}/>
-            <AMessageContainer message={"hahaha"} ownText={true}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={false}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={true}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={true}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={false}/>
-            <AMessageContainer message={"hahaha"} ownText={true}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={false}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={true}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={true}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={false}/>
-            <AMessageContainer message={"hahaha"} ownText={true}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={false}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={true}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={true}/>
-            
-            <AMessageContainer message={"hahaha"} ownText={false}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={true}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={false}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={true}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={true}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={false}/>
+                <AMessageContainer message={"hahaha"} ownText={true}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={false}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={true}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={true}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={false}/>
+                <AMessageContainer message={"hahaha"} ownText={true}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={false}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={true}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={true}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={false}/>
+                <AMessageContainer message={"hahaha"} ownText={true}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={false}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={true}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={true}/>
+                
+                <AMessageContainer message={"hahaha"} ownText={false}/>
 
-        </ScrollView>
-        <View style={{paddingTop:5}}>
-            <TextInput style={styles.messageInput}  multiline={true} placeholder='Write your text'/>
-            <Pressable style={styles.sendBtnStyle} onPress={()=>console.log('Send btn pressed')}>
-                <FontAwesome name="send" size={24} color="#0274ed" />
-            </Pressable>
+            </ScrollView>
+            <View style={{paddingTop:5}}>
+                <TextInput style={styles.messageInput}  multiline={true} placeholder='Write your text'/>
+                <Pressable style={styles.sendBtnStyle} onPress={()=>console.log('Send btn pressed')}>
+                    <FontAwesome name="send" size={24} color="#0274ed" />
+                </Pressable>
+            </View>
         </View>
-    </View>
-  )
+    )
 }
 
 const styles = StyleSheet.create({
