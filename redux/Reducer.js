@@ -2,7 +2,7 @@ import { UPDATE_ACTIVE_TAB_NAME, UPDATE_CURRENT_OPEN_CHATREF, UPDATE_CURRENT_USE
 
 const initialState = {
     currentUserUsername:'',
-    currentUserId:'',
+    currentUserId:'bolbo',
     currentUserEmail:'',
     loggedIn: false,
     currentOpenedChatID:'',

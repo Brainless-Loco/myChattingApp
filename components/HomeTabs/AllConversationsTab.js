@@ -29,13 +29,9 @@ export default function AllConversationsTab({navigation}) {
     getAllConversations()
 
 
-    const trying = ()=>{
-
-    }
-
   return (
     <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false} style={styles.container}>
-        <ASingleChat navigation={navigation} roomId={"sdssd"}/>
+        <ASingleChat navigation={navigation} roomId={"6jLrAY6hAhJhjNsHY16S"}/>
         <ASingleChat navigation={navigation}/>
         <ASingleChat navigation={navigation}/>
     </ScrollView>

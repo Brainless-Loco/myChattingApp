@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput, ScrollView, Pressable, Image, ActivityIndicator } from 'react-native'
+import { View, Text, StyleSheet, TextInput, ScrollView, Pressable, Image, ActivityIndicator, TouchableOpacity } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import { FontAwesome } from '@expo/vector-icons';
 import AMessageContainer from '../components/ChatComponents/AMessageContainer';
@@ -9,24 +9,56 @@ import { useSelector } from 'react-redux';
 export default function Chat() {
     const scrollViewRef = useRef();
 
-    const [loading, setloading] = useState(true)
+    const [loading, setloading] = useState(false)
+    const [chatMessages, setchatMessages] = useState([])
+    const [textMessage, settextMessage] = useState('')
 
 
 
     const hotChatRef = useSelector(state=>state.currentOpenedChatID)
-    console.log(hotChatRef)
+    const userRef = useSelector(state=>state.currentUserId)
+
+
+
     
-    const chatRoomsColRef = collection(db,'chatRooms/6jLrAY6hAhJhjNsHY16S/chat')
+    const chatRoomsColRef = collection(db,'chatRooms/'+hotChatRef+'/chat')
 
     const fetchTrial = async ()=>{
+        setloading(true)
         const querySnapshot = await getDocs(chatRoomsColRef);
+        let tempMessages = []
         querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-            // console.log(doc)
-
-            return;
+            // console.log(doc.id, " => ", doc.data());
+            tempMessages = [...tempMessages,doc.data()]
         });
+        tempMessages.sort((a, b) => {
+            const timeA = new Date(a.time);
+            const timeB = new Date(b.time);
+            if (timeA < timeB) {
+              return -1;
+            }
+            if (timeA > timeB) {
+              return 1;
+            }
+            return 0;
+          });
+        setchatMessages(tempMessages)
+        setloading(false)
+    }
+
+
+    const sendMessage =  async ()=>{
+        if(textMessage.length<1 || loading==true) return;
+        const tempDoc = {
+            message:textMessage,
+            sentBy:userRef,
+            seenBy:[],
+            messageType:'string',
+            time:new Date()
+        }
+        const docId = await addDoc(chatRoomsColRef,tempDoc)
+        setchatMessages([...chatMessages,tempDoc])
+        settextMessage('')
     }
 
     useEffect(() => {
@@ -39,31 +71,19 @@ export default function Chat() {
             <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false} 
             ref={scrollViewRef}
             onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}>
-                {loading ? <ActivityIndicator size={50} color={'#0274ed'} /> :
-
-                    <>
-                        <AMessageContainer message={"hahahaadfjjdajfbadjkbvjkd daj fadjhf jadlfh adjhf adjfh kadj jkb cxzjkb cjkzxbkbckjXBc jkxz "} ownText={false}/>
-
-                
-                        <AMessageContainer message={"hahaha"} ownText={true}/>
-
-                        <AMessageContainer message={"hahaha"} ownText={false}/>
-
-                        <AMessageContainer message={"hahaha"} ownText={true}/>
-
-                        <AMessageContainer message={"hahaha"} ownText={true}/>
-
-                        <AMessageContainer message={"hahaha"} ownText={false}/>
-                    
-                    </>
+                {loading ? 
+                    <ActivityIndicator size={50} color={'#0274ed'} /> :
+                    chatMessages.map((doc)=>{
+                        return <AMessageContainer key={doc.time} message={doc.message} ownText={doc.sentBy==userRef?true:false}/>
+                    })
                 }
 
             </ScrollView>
             <View style={{paddingTop:5}}>
-                <TextInput style={styles.messageInput}  multiline={true} placeholder='Write your text'/>
-                <Pressable disabled={loading} style={styles.sendBtnStyle} onPress={()=>console.log('Send btn pressed')}>
+                <TextInput value={textMessage} onChangeText={(e)=>settextMessage(e)} style={styles.messageInput}  multiline={true} placeholder='Write your text'/>
+                <TouchableOpacity style={styles.sendBtnStyle} onPress={sendMessage}>
                     <FontAwesome name="send" size={24} color="#0274ed" />
-                </Pressable>
+                </TouchableOpacity>
             </View>
         </View>
     )
