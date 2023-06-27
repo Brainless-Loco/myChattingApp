@@ -18,15 +18,20 @@ const styles = StyleSheet.create({
     container: {
         display:'flex',
         flexDirection:'row',
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#f7f7f8',
         alignItems: 'center',
         justifyContent:'space-between',
         borderRadius:5,
         gap:12,
         margin:5,
-        marginBottom:2,
+        marginBottom:6,
         marginTop:2,
-        padding:7
+        padding:7,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+        elevation: 4,
     },
     imageStyle:{
         height:45,

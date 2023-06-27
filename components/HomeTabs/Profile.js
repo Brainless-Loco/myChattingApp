@@ -80,12 +80,13 @@ const styles = StyleSheet.create({
   textInputStyle:{
     borderWidth:2,
     borderColor:'#0274ed',
-    borderRadius:30,
+    borderRadius:25,
     height:50,
     color:'#0274ed',
     padding:10,
     fontWeight:'bold',
-    marginBottom:10
+    marginBottom:10,
+
   },
   updateProfileBtn:{
     backgroundColor:'#0274ed',
@@ -95,7 +96,13 @@ const styles = StyleSheet.create({
     display:'flex',
     justifyContent:'center',
     alignItems:'center',
-    marginTop:12
+    marginTop:12,
+    
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
   },
   signOutBtn:{
     display:'flex',
@@ -107,5 +114,11 @@ const styles = StyleSheet.create({
     height:50,
     borderRadius:25,
     textAlign:'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
+    marginBottom:10
   }
 })

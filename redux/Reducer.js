@@ -1,9 +1,8 @@
-import { UPDATE_ACTIVE_TAB_NAME, UPDATE_CURRENT_USER_USERNAME } from "./Types"
+import { UPDATE_ACTIVE_TAB_NAME, UPDATE_CURRENT_OPEN_CHATREF, UPDATE_CURRENT_USER_USERNAME } from "./Types"
 
 const initialState = {
     currentUserUsername:'',
     currentUserId:'',
-    currentOpenedChat:'',
     currentUserEmail:'',
     loggedIn: false,
     currentOpenedChatID:'',
@@ -16,6 +15,13 @@ export default (state = initialState, action) => {
             return{
                 ...state,
                 currentUserUsername:action.username
+            }
+        }
+
+        case UPDATE_CURRENT_OPEN_CHATREF:{
+            return{
+                ...state,
+                currentOpenedChatID:action.chatRef
             }
         }
 
